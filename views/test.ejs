@@ -1,0 +1,22 @@
+<% include header %>
+
+  <div>
+    
+    <form action="/api/motionDetected" method="POST">
+      <div class="form-group">
+        <label for="roomId">Room</label>
+        <select class="form-control" id="roomId" name="roomId">
+          <option>312</option>
+          <option>313</option>
+          <option>314</option>
+          <option>315</option>
+          <option>316</option>
+        </select>        
+      </div>
+      <button type="submit" class="btn btn-default">Submit Motion Detected</button>
+    </form>
+    
+    
+  </div>
+
+<% include footer %>

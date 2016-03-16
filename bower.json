@@ -1,0 +1,23 @@
+{
+  "name": "iot-conf-room-dashboard",
+  "description": "iot-conf-room-dashboard",
+  "main": "",
+  "authors": [
+    "Kaushik Ashodiya <kaushika@hotmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kashodiya/iot-conf-room-dashboard",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.1",
+    "handlebars": "^4.0.5"
+  }
+}
