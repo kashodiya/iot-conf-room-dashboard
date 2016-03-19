@@ -18,6 +18,9 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.1",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "jquery-form": "^3.46.0",
+    "moment": "^2.12.0",
+    "circliful": "^1.0.0"
   }
 }

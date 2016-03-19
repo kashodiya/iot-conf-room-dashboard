@@ -1,4 +1,7 @@
+var socket;
+
 $(function(){
-    console.log("OK");
-    
+  socket = io.connect();
 });
+
+
