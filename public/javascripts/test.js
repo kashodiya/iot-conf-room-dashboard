@@ -28,7 +28,7 @@ $(function(){
       //$("#motionDetectedForm").ajaxForm({url: '/api/motionDetected', type: 'post'});
       $(this).ajaxSubmit({success: function(response){
         console.log("Submitting form DONE!", response);
-        socket.emit('motionDetected', { roomId: response.roomId });
+        //socket.emit('motionDetected', { roomId: response.roomId });
       }}); 
       return false;
     });

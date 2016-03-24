@@ -24,14 +24,19 @@ $(function(){
   function tickData(){
     if(rooms.length == 0) return;
     
-    console.log("Ticking...");
+    //console.log("Ticking...");
     
     rooms = rooms.map(function(r){
       var lastDate = moment(r.timeLastMovementDetected);
-      r.availableMinutes = moment().diff(lastDate, 'minutes');
-      console.log(r.availableMinutes);
+      var dateDiff = moment(moment().diff(lastDate));
+      //r.availableMinutes = moment().diff(lastDate, 'minutes');
+      r.availableMinutes = dateDiff.minute();
+      r.availableTime = dateDiff.format("mm:ss");
+      //console.log(r.availableMinutes);
       
       r.availableSince = lastDate.fromNow();
+      
+
       return r;
     });
     renderData();
@@ -60,11 +65,12 @@ $(function(){
     rooms.map(function(r){
       
       $("#pie-" + r.roomId).circliful({
+        showPercent: false,
         animation: false,
         foregroundBorderWidth: 5,
         backgroundBorderWidth: 15,
-        percent: r.availableMinutes,
-        text: "aaa"
+        target: r.availableMinutes,
+        percent: (r.availableMinutes * 100) / 60
       });    
       return r;
     });
@@ -78,8 +84,8 @@ $(function(){
   function refreshData(){
     rooms = [];
     $.getJSON("/api/rooms", function(roomsData){
-      //console.log(rooms);
       rooms = roomsData;
+      //console.log(rooms);
       tickData();
     })
   }

@@ -1,3 +1,4 @@
+var moment = require("moment");
 var Room = require("./model/room");
 
   var rooms = [
@@ -20,6 +21,9 @@ var Room = require("./model/room");
     ];
 
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 Room.remove({}, function(){
   
@@ -27,7 +31,8 @@ Room.remove({}, function(){
     var room = new Room();
     room.roomId = r.id;
     room.roomName = r.name; 
-    room.timeLastMovementDetected = new Date();
+    var minutes = getRandomInt(5, 30);
+    room.timeLastMovementDetected = moment().subtract(minutes, 'minutes').toDate();
     room.save(function(err){
       console.log("Room created", r, err);    
     });

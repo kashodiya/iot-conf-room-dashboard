@@ -15,6 +15,47 @@ router.get('/test', function(req, res, next) {
 });
 
 
+function handleMotionDetected(req, res, next){
+  console.log("Got motionDetected", req.method);
+  var roomId;
+  var availabileAgo;
+  if(req.method === "POST"){
+    roomId = req.body.roomId;
+    availabileAgo = Number(req.body.availabileAgo);
+  }else{
+    roomId = req.query.roomId;
+    availabileAgo = Number(req.query.availabileAgo);
+  }
+  
+  console.log("roomId, availabileAgo => ", roomId, availabileAgo);
+  
+  
+  Room.findOne({roomId: roomId}, function(err, room){
+    if(err){
+      res.json({success: false, error: err});
+    }else{
+      
+      room.timeLastMovementDetected = moment().subtract(availabileAgo, 'minutes').toDate();
+      room.save(function(error){
+        if(err){
+          res.json({success: false, error: error});
+        }else{
+          console.log("Emitting from server...");          
+          //req.io.sockets.emit('motionDetected', { roomId: roomId });
+          req.io.sockets.emit('fetchData');
+
+          res.json({success: true, roomId: roomId});
+        }
+      });
+    }
+  });
+  
+}
+
+router.get('/api/motionDetected', handleMotionDetected);
+router.post('/api/motionDetected', handleMotionDetected);
+
+/*
 router.post('/api/motionDetected', function(req, res, next) {
   //Store this
   console.log("Got motionDetected", req.body);
@@ -37,7 +78,7 @@ router.post('/api/motionDetected', function(req, res, next) {
     }
   });
 });
-
+*/
 
 router.get('/api/rooms', function(req, res, next) {
   Room.find({}, function(err, rooms){

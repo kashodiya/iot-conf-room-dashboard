@@ -40,7 +40,7 @@
                   <th>#</th>
                   <th>Name</th>
                   <th>Last used</th>
-                  <th>Available since</th>
+                  <th>Available since (mm:ss)</th>
                 </tr>
               </thead>
               <tbody id="roomUsageData">
@@ -57,7 +57,7 @@
       <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
       -->
       <h4>{{roomName}}</h4>
-      <span class="text-muted">{{timeLastMovementDetected}}</span>
+      <span class="text-muted">{{availableTime}}</span>
     </div>
   {{/each}}    
 </script>
@@ -68,7 +68,7 @@
       <td>{{roomId}}</td>
       <td>{{roomName}}</td>
       <td>{{formatDate timeLastMovementDetected}}</td>
-      <td>{{availableSince}}</td>
+      <td>{{availableTime}}</td>
     </tr>
   {{/each}}    
 </script>
